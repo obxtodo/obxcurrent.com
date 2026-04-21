@@ -169,7 +169,7 @@ title: OBX Current
             container.innerHTML = ''; 
             
             // Filter and display the next three tide events
-            data.predictions.slice(0, 3).forEach((tide, index) => {
+            data.predictions.slice(0, 10).forEach((tide, index) => {
                 const time = new Date(tide.t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 const label = tide.type === 'H' ? 'High Tide' : 'Low Tide';
                 
@@ -179,7 +179,7 @@ title: OBX Current
                 const style = 'font-size: 0.9rem; border-top: index === 0 ? "" : "1px solid #e2e8f0"; padding-top: index === 0 ? "0" : "10px";';
                 container.innerHTML += `
                     <div style="${style} display: flex; justify-content: space-between;">
-                        <span>${isNext ? 'Next ' + label : label}</span>
+                        <span>${isNext ? '' + label : label}</span>
                         <strong>${time}</strong>
                     </div>`;
             });
