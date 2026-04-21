@@ -4,6 +4,70 @@ title: OBX Current
 ---
 
 
+<div class="" style="grid-column: 1 / -1; margin-bottom: 20px;">
+   
+  <h3>Happening Today</h3>
+
+  {% assign day_buffer = "now" | date: "%s" | minus: 43200 %}
+  {% assign today_str = day_buffer | date: "%Y-%m-%d" %}
+  {% assign sorted_events = site.data.events | sort: "date" %}
+  {% assign found_event = false %}
+
+  <div class="event-list" style="margin-bottom: 15px;"> {% comment %} Reduced margin from 2rem {% endcomment %}
+    {% for event in sorted_events %}
+      {% assign event_start = event.date | date: "%Y-%m-%d" %}
+      
+      {% if event.end_date %}
+        {% assign event_expiry = event.end_date | date: "%Y-%m-%d" %}
+      {% else %}
+        {% assign event_expiry = event_start %}
+      {% endif %}
+
+      {% if event_expiry == today_str %}
+        {% assign found_event = true %}
+        <div class="event-card">
+          <div class="date-badge">
+            <span class="month">{{ event.date | date: "%b" }}</span>
+            <span class="day">{{ event.date | date: "%-d" }}</span>
+          </div>
+
+          <div class="event-info">
+            <div class="title-row">
+              <h4>{{ event.name }}</h4>
+              {% if event.end_date %}
+                <span class="multi-day-tag">Multi-Day Event</span>
+              {% endif %}
+            </div>
+            
+            <p class="location-time">
+              <i class="fa-solid fa-location-dot"></i> {{ event.location }} • {{ event.time }}
+            </p>
+          </div>
+
+          {% if event.link %}
+            <a href="{{ event.link }}" class="btn-sm" target="_blank">Details</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    {% if found_event == false %}
+      <div class="event-card" style="justify-content: center; padding: 25px; text-align: center; border: 1px dashed #cbd5e1; background: transparent;">
+        <div class="event-info">
+          <h4 style="color: #64748b !important; margin-bottom: 8px !important;">No events scheduled for today</h4>
+          <p class="location-time">Check back later for updates or view upcoming events on <a href="https://www.obxtodo.com/events" target="_blank" style="color: #58C896; text-decoration: none; font-weight: 600;">www.obxtodo.com/events</a></p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {% comment %} Added margin-bottom here to create space before the weather/tide grid {% endcomment %}
+  <div style="margin-bottom: 40px;">
+    <a href="https://obxtodo.com/this-week" style="display: inline-block; font-size: 0.8rem; font-weight: 700; color: #2c3e50; text-decoration: none; border-bottom: 2px solid #58C896; line-height: 1.2;">
+      View Full Week &rarr;
+    </a>
+  </div>
+</div>
 
 <div class="dashboard-grid">
 
@@ -48,74 +112,13 @@ title: OBX Current
         Full NOAA Forecast <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6rem; margin-left: 4px;"></i>
       </a>
     </div>
+    
   </div>
+  
 </div>
 
   
-<div class="" style="grid-column: 1 / -1;">
-   
-     <h3>Happening Today</h3>
 
-
-  {% assign day_buffer = "now" | date: "%s" | minus: 43200 %}
-{% assign today_str = day_buffer | date: "%Y-%m-%d" %}
-{% assign sorted_events = site.data.events | sort: "date" %}
-
-{% comment %} Initialize a counter to track if we found any matches {% endcomment %}
-{% assign found_event = false %}
-
-<div class="event-list">
-  {% for event in sorted_events %}
-    {% assign event_start = event.date | date: "%Y-%m-%d" %}
-    
-    {% if event.end_date %}
-      {% assign event_expiry = event.end_date | date: "%Y-%m-%d" %}
-    {% else %}
-      {% assign event_expiry = event_start %}
-    {% endif %}
-
-    {% if event_expiry == today_str %}
-      {% assign found_event = true %}
-      <div class="event-card">
-        <div class="date-badge">
-          <span class="month">{{ event.date | date: "%b" }}</span>
-          <span class="day">{{ event.date | date: "%-d" }}</span>
-        </div>
-
-        <div class="event-info">
-          <div class="title-row">
-            <h4>{{ event.name }}</h4>
-            {% if event.end_date %}
-              <span class="multi-day-tag">Multi-Day Event</span>
-            {% endif %}
-          </div>
-          
-          <p class="location-time">
-            <i class="fa-solid fa-location-dot"></i> {{ event.location }} • {{ event.time }}
-          </p>
-        </div>
-
-        {% if event.link %}
-          <a href="{{ event.link }}" class="btn-sm" target="_blank">Details</a>
-        {% endif %}
-      </div>
-    {% endif %}
-  {% endfor %}
-
-  {% comment %} Display this if no events matched the today_str {% endcomment %}
-  {% if found_event == false %}
-<div class="event-card" style="justify-content: center; padding: 25px; text-align: center; border: 1px dashed #cbd5e1; background: transparent;">
-      <div class="event-info">
-        <h4 style="color: #64748b !important; margin-bottom: 8px !important;">No events scheduled for today</h4>
-        <p class="location-time">Check back later for updates or view upcoming events on <a href="https://www.obxtodo.com/events" target="_blank" style="color: #58C896; text-decoration: none; font-weight: 600;">www.obxtodo.com/events</a></p>
-      </div>
-    </div>
-  {% endif %}
-</div>
-  <a href="https://obxtodo.com/this-week" style="display: inline-block; margin-top: 0px; font-size: 0.8rem; font-weight: 700; color: #2c3e50; text-decoration: none; border-bottom: 2px solid #58C896;">
-    View Full Week &rarr;
-  </a>
-</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
