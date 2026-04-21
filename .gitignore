@@ -15,3 +15,6 @@ vendor/
 
 # Personal/Private files
 private/
+
+.sass-cache/
+_data/events.yml
