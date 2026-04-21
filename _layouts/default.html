@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | OBX Current</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+  
+  <style>
+    /* MASTER THEME */
+    html, body { background-color: #ffffff; color: #5a5a5a; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    header h1, h2, h3 { font-family: 'Lora', serif !important; font-weight: 700 !important; color: #2c3e50 !important; }
+    .wrapper { width: 90%; max-width: 1050px; margin: 0 auto; }
+
+    .network-bar { background: #2c3e50; color: white; text-align: center; padding: 10px 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+    .network-bar a { color: #58C896; text-decoration: none; margin-left: 10px; }
+
+    header { padding: 40px 0; text-align: center; border-bottom: 1px solid rgba(0, 0, 0, 0.05); margin-bottom: 40px; }
+    header h1 { font-size: 2.5rem; font-style: italic; margin: 0; }
+    header p { text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; color: #95a5a6; margin-top: 10px; }
+
+    .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 25px; }
+    .status-card { background: #f8fafc; padding: 30px; border-radius: 20px; border: 1px solid transparent; transition: all 0.3s ease; position: relative; }
+    .status-card:hover { background: #ffffff; border-color: #58C896; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .card-label { font-size: 0.7rem; text-transform: uppercase; font-weight: 800; color: #58C896; letter-spacing: 2px; display: block; }
+
+    /* CUSTOM NAV BUTTONS */
+    .custom-nav-btn { width: 34px; height: 34px; background: #edf2f7; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; color: #2c3e50; }
+    .custom-nav-btn:hover { background: #58C896; color: #fff; }
+    
+    .splide__pagination { bottom: -1.5rem !important; }
+    .splide__pagination__page.is-active { background: #58C896 !important; }
+    .site-footer { text-align: center; padding: 40px 0; border-top: 1px solid rgba(0, 0, 0, 0.05); font-size: 0.75rem; margin-top: 50px; }
+
+
+/* Container for the whole list */
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* Individual Event Card - Dashboard Style */
+.event-card {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  padding: 15px 20px;
+  border-radius: 16px;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.event-card:hover {
+  background: #ffffff;
+  border-color: #58C896;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* The Date Badge (The Hero of the Card) */
+.date-badge {
+  min-width: 55px !important;
+  height: 55px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  justify-content: center;
+  background: #f0fdf4; /* Seafoam background */
+  border-radius: 12px;
+  margin-right: 1.25rem;
+  border: 1px solid rgba(88, 200, 150, 0.2);
+}
+
+.date-badge .month {
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #58C896;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.date-badge .day {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #2c3e50;
+  line-height: 1;
+}
+
+/* Info Section */
+.event-info {
+  flex-grow: 1;
+}
+
+.event-info h4 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  margin: 0 0 2px 0 !important;
+}
+
+.location-time {
+  font-size: 0.8rem !important;
+  color: #64748b !important;
+  margin: 0 !important;
+}
+
+ /* 3. The Minimal Multi-Day Tag */
+  .multi-day-tag {
+    background: #e2e8f0; /* Soft grey instead of dark navy */
+    color: #475569;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    border: 1px solid #cbd5e1;
+  }
+  .btn-sm {
+  background: #58C896;
+  color: white !important;
+  padding: 5px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: auto; /* Pushes button to the far right */
+}
+
+.network-bar {
+  background: #f8fafc; /* Light subtle grey */
+  padding: 8px 0;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.network-bar a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.network-bar a:hover {
+  color: #58C896; /* Brand Green */
+}
+  
+  </style>
+</head>
+<body>
+
+<div class="network-bar">
+  <a href="https://obxtodo.com" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+    <img src="{{ '/assets/img/logo.png' | relative_url }}" 
+         alt="OBX To Do Logo" 
+         style="height: 24px; width: auto; display: block;"> Powered by www.obxtodo.com
+  </a>
+</div>
+
+  <div class="wrapper">
+    <header>
+      <h1>OBX Current</h1>
+      <p>What's happening today in the Outer Banks</p>
+      <p>{{ "now" | date: "%m-%d-%Y" }}</p>
+    </header>
+
+    {{ content }}
+
+    <footer class="site-footer">
+      <p>&copy; {{ "now" | date: "%Y" }} OBX To Do. Always check physical flags before swimming.</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+</body>
+</html>
