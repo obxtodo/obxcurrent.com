@@ -7,7 +7,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
   <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}">
@@ -50,29 +50,12 @@
   margin: 2rem 0;
 }
 
-/* Individual Event Card - Dashboard Style */
-.event-card {
-  display: flex;
-  align-items: center;
-  background: #f8fafc;
-  padding: 15px 20px;
-  border-radius: 16px;
-  text-decoration: none !important;
-  transition: all 0.2s ease;
-  border: 1px solid transparent;
-}
 
-.event-card:hover {
-  background: #ffffff;
-  border-color: #58C896;
-  transform: translateX(5px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
 
 /* The Date Badge (The Hero of the Card) */
 .date-badge {
-  min-width: 55px !important;
-  height: 55px !important;
+    min-width: 65px !important;
+    height: 65px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center;
@@ -99,6 +82,7 @@
   color: #2c3e50;
   line-height: 1;
 }
+
 
 /* Info Section */
 .event-info {
@@ -131,7 +115,10 @@
     letter-spacing: 0.5px;
     border: 1px solid #cbd5e1;
   }
-  .btn-sm {
+
+  
+
+.btn-sm {
   background: #58C896;
   color: white !important;
   padding: 5px 15px;
@@ -140,6 +127,76 @@
   font-size: 0.8rem;
   font-weight: 600;
   margin-left: auto; /* Pushes button to the far right */
+}
+/* The Button - Minimalist */
+.btn-sm {
+  background: #f1f5f9;
+  color: #475569 !important;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+  border: 1px solid #e2e8f0;
+}
+
+
+/* Individual Event Card - Dashboard Style */
+.event-card {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  padding: 15px 20px;
+  border-radius: 16px;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.event-card:hover {
+  background: #ffffff;
+  border-color: #58C896;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+
+
+.event-card:hover .btn-sm {
+  background: #58C896;
+  color: white !important;
+  border-color: #58C896;
+}
+/* Optional: Add a subtle style to the card to show it's a "Long" event */
+.event-card.multi-day {
+  border-left-style: double;
+  border-left-width: 8px;
+}
+
+.event-card, .event-card * {
+  box-sizing: border-box !important;
+}
+
+
+
+
+
+/* The Action Button */
+.btn-sm {
+  background: #58C896;
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-sm:hover {
+  background: #46a37a;
 }
 
 .network-bar {
@@ -218,6 +275,1116 @@ header h1 {
       header p { letter-spacing: 3px; font-size: 0.7rem !important; }
       .site-logo { height: 45px; }
     }
+
+
+    /* 1. MASTER THEME RESET */
+    html, body {
+      background-color: #ffffff !important;
+      color: #5a5a5a !important; 
+      font-family: 'Montserrat', sans-serif !important;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    /* Elegant Serif for Titles */
+    header h1, h2, h3, .post-content h2 {
+      font-family: 'Lora', serif !important;
+      font-weight: 700 !important;
+      color: #2c3e50 !important;
+      margin-top: 0;
+    }
+
+    /* 2. CONTAINER CONSTRAINTS */
+    .wrapper {
+      width: 90% !important;
+      max-width: 1050px !important;
+      margin: 0 auto !important;
+      float: none !important;
+      position: relative !important;
+      background: #ffffff !important;
+    }
+
+    /* 3. HEADER & BRANDING (Frosted Glass & Centered) */
+    header {
+      position: sticky !important;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 35px 0 !important; 
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      text-align: center !important;
+      width: 100%;
+      margin-bottom: 50px;
+    }
+/* 3.1 LOGO & TITLE ALIGNMENT */
+ .logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Changed from flex-start to center */
+  gap: 20px;
+  flex: 2; /* Takes up the middle space */
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  /* 1. Remove the spacers that are squeezing you from the sides */
+  .header-content::before, 
+  .header-spacer { 
+    display: none !important; 
+  }
+
+  /* 2. Setup the container to be a tight horizontal row */
+  .logo-container {
+    display: flex !important;
+    flex-direction: row !important; /* Forces side-by-side */
+    align-items: center !important;
+    justify-content: flex-start !important; /* Keeps them left-aligned */
+    gap: 12px !important; /* Space between logo and text */
+    flex: 1;
+    padding-left: 10px;
+  }
+
+  /* 3. Shrink the logo and H1 so they can actually fit on one line */
+  .site-logo {
+    height: 35px !important; /* Smaller logo for mobile row */
+    width: auto;
+  }
+
+  header h1 {
+    font-size: 1.4rem !important; /* Small enough to stay on one line */
+    white-space: nowrap !important; /* Prevents wrapping if you prefer it on one line */
+    letter-spacing: 1px !important;
+    margin: 0 !important;
+  }
+
+  
+  /* 5. Adjust header padding to make it more compact */
+  header {
+    padding: 15px 0 !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+    .site-logo {
+      height: 60px; /* Adjust based on your logo's proportions */
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .site-logo:hover {
+      transform: rotate(-5deg) scale(1.1); /* Adds a little 'dynamic' personality */
+    }
+
+    /* Adjust H1 to ensure it doesn't force a new line */
+header h1 {
+  font-size: 3.2rem !important;
+  font-style: italic;
+  margin: 0 !important;
+  line-height: 1; /* Helps with vertical centering */
+}
+    
+    header h1 a { color: #2c3e50 !important; text-decoration: none !important; transition: opacity 0.3s ease; }
+    header h1 a:hover { opacity: 0.7; }
+
+    header p {
+      font-family: 'Montserrat', sans-serif !important;
+      font-weight: 500;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-size: 0.8rem !important;
+      color: #95a5a6 !important;
+      margin-top: 15px !important;
+    }
+
+    /* 4. NAVIGATION */
+    nav { margin-top: 30px; }
+    nav a {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 0.75rem !important;
+      letter-spacing: 2px;
+      font-weight: 600;
+      margin: 0 18px;
+      color: #2c3e50 !important;
+      text-decoration: none !important;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 6px;
+      display: inline-block;
+      transition: color 0.3s ease;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background-color: #3498db;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(-50%);
+    }
+    
+    nav a:hover::after, nav a.active::after { width: 70%; }
+    nav a:hover, nav a.active { color: #3498db !important; }
+
+    /* 5. SPLIDE CUSTOMIZATION */
+    .splide__pagination__page {
+      background: #ddd !important;
+      border-radius: 0 !important;
+      width: 25px !important;
+      height: 3px !important;
+      border: none !important;
+      margin: 0 5px !important;
+      transition: all 0.3s ease !important;
+    }
+    .splide__pagination__page.is-active { background: #3498db !important; width: 45px !important; }
+
+    /* 6. FLEXBOX FOR POSTS */
+    .post-container {
+      display: flex;
+      flex-direction: row;
+      gap: 60px;
+      align-items: flex-start;
+      margin-bottom: 80px;
+    }
+    .post-media { flex: 1.3; max-width: 600px; }
+    .post-content { flex: 1; }
+    .post-content h2 { font-size: 2.2rem; margin-bottom: 15px; }
+
+    /* 7. HOMEPAGE GRID & DYNAMIC EFFECTS */
+    .gallery-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+      gap: 40px !important;
+      padding-bottom: 80px;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .gallery-item {
+      border: none !important;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #ffffff;
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+      position: relative;
+    }
+
+    /* Staggered Delay */
+    .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+    .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+    .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+    .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+
+    .gallery-item:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+    }
+
+    /* The Secret Sauce Wrap */
+    .gallery-image-wrap {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden; 
+      border-radius: 16px 16px 0 0;
+      position: relative;
+    }
+
+    .gallery-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.6s ease;
+    }
+
+    .gallery-item:hover .gallery-image-wrap img {
+      transform: scale(1.1);
+      filter: brightness(1.05) contrast(1.05);
+    }
+
+    .gallery-item h3 {
+      padding: 20px;
+      margin: 0;
+      background: #ffffff;
+      position: relative;
+      z-index: 10;
+    }
+
+
+
+
+
+
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 36px;
+  text-decoration: none;
+  color: #2c3e50;
+}
+/* The container that holds everything in a row */
+.header-content {
+  display: flex;
+  align-items: center; /* Vertically centers the menu icon with the logo */
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.header-content::before {
+  content: "";
+  flex: 1;
+}
+
+/* The vertical box for Logo + Description */
+.brand-wrapper {
+  display: flex;
+  flex-direction: column; /* Stacks logo on top of description */
+  align-items: center;
+  flex: 2; /* Takes up the middle space */
+}
+
+.menu-toggle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Keeps the bars on the right side of its flex-box */
+  gap: 5px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+
+.header-spacer {
+  flex: 1; /* Balances the menu-toggle on the right */
+}
+
+/* Adjust the description p tag */
+header p {
+  margin: 5px 0 0 0 !important; /* Tighten the gap under the logo */
+  text-align: center;
+}
+
+.instagram-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: #2c3e50; /* Match your header text color */
+  color: #fff !important;
+  border-radius: 50px; /* Rounded pill shape looks more modern */
+  text-decoration: none !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.instagram-btn i {
+  font-size: 1.2rem;
+}
+
+.instagram-btn:hover {
+  background: #58C896; /* Instagram Pink */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+
+.this-week-promo {
+  display: block;
+  background: #2c3e50; /* Match your header text color */
+  color: #fff !important;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 20px;
+  border-radius: 50px; /* Rounded pill shape looks more modern */
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.this-week-promo:hover {
+  background: #58C896; /* Instagram Pink */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.connect-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* Base style for both buttons */
+.instagram-btn, .email-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  color: #fff !important;
+}
+
+.email-btn { 
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: #2c3e50; /* Match your header text color */
+  color: #fff !important;
+  border-radius: 50px; /* Rounded pill shape looks more modern */
+  text-decoration: none !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+
+
+/* Container for the whole list */
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* Individual Event Card - Dashboard Style */
+.event-card {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  padding: 15px 20px;
+  border-radius: 16px;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.event-card:hover {
+  background: #ffffff;
+  border-color: #58C896;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+
+
+.event-card:hover .btn-sm {
+  background: #58C896;
+  color: white !important;
+  border-color: #58C896;
+}
+/* Optional: Add a subtle style to the card to show it's a "Long" event */
+.event-card.multi-day {
+  border-left-style: double;
+  border-left-width: 8px;
+}
+
+.event-card, .event-card * {
+  box-sizing: border-box !important;
+}
+
+/* The Date Badge (The Hero of the Card) */
+.date-badge {
+  min-width: 55px !important;
+  height: 55px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  justify-content: center;
+  background: #f0fdf4; /* Seafoam background */
+  border-radius: 12px;
+  margin-right: 1.25rem;
+  border: 1px solid rgba(88, 200, 150, 0.2);
+}
+
+.date-badge .month {
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #58C896;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.date-badge .day {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #2c3e50;
+  line-height: 1;
+}
+
+/* Info Section */
+.event-info {
+  flex-grow: 1;
+}
+
+.event-info h4 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  margin: 0 0 2px 0 !important;
+}
+
+.location-time {
+  font-size: 0.8rem !important;
+  color: #64748b !important;
+  margin: 0 !important;
+}
+
+
+.btn-sm {
+  background: #58C896;
+  color: white !important;
+  padding: 5px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: auto; /* Pushes button to the far right */
+}
+/* The Button - Minimalist */
+.btn-sm {
+  background: #f1f5f9;
+  color: #475569 !important;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+  border: 1px solid #e2e8f0;
+}
+
+
+
+
+/* The Action Button */
+.btn-sm {
+  background: #58C896;
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-sm:hover {
+  background: #46a37a;
+}
+
+/* The Date Badge */
+.date-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f0fdf4; /* Very light mint background */
+  color: #2d3748;
+  padding: 0.75rem;
+  border-radius: 8px;
+  min-width: 70px;
+  margin-right: 1.5rem;
+}
+
+.date-badge .month {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.date-badge .day {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Event Content */
+.event-info {
+  flex-grow: 1;
+}
+
+.event-info h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.2rem;
+  color: #1a202c;
+}
+
+.event-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+
+@media (max-width: 600px) {
+  .event-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem; /* Increase padding for better mobile touch targets */
+    position: relative;
+  }
+  
+  .date-badge {
+    flex-direction: row;
+    gap: 10px;
+    min-width: auto;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    align-self: flex-start; /* Keeps the badge from stretching full width */
+  }
+
+  .event-info {
+    width: 100%; /* Ensure the text doesn't squeeze the button */
+    margin-bottom: 1rem;
+  }
+  
+  .btn-sm {
+    display: block; /* Makes it a full-width block */
+    width: 100%; 
+    text-align: center;
+    margin-left: 0; /* Resets the 'auto' margin from desktop */
+    box-sizing: border-box; /* Crucial: ensures padding doesn't add to width */
+  }
+}
+.email-btn:hover { 
+  background: #58C896; /* Instagram Pink */
+  transform: translateY(-2px); 
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+/* Update the badge to handle more width */
+.date-badge {
+  min-width: 85px; /* Increased from 70px */
+  padding: 0.75rem 0.5rem;
+}
+
+/* Style for the multi-day day text */
+.date-badge .day {
+  font-size: 1.2rem; /* Slightly smaller to fit two numbers */
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.range-separator {
+  font-size: 1rem;
+  color: #58C896;
+  font-weight: 400;
+}
+
+/* 1. Alignment for the right-side container */
+.header-right {
+  display: flex;
+  justify-content: flex-end; /* Pushes icon to the far right */
+  align-items: center;
+}
+
+/* 2. Styling the Icon */
+.header-right a {
+  color: #2c3e50; /* Match your header title color */
+  font-size: 1.4rem; /* Slightly larger than standard text */
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  text-decoration: none !important; /* This removes the underline */
+  border: none !important;          /* This removes any potential bottom borders */
+  outline: none !important;
+}
+
+/* 3. Hover Effect */
+.header-right a:hover {
+  color: #58C896; /* Your brand seafoam green */
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* 4. Responsive tweak for smaller screens */
+@media (max-width: 768px) {
+  .header-right a {
+    font-size: 1.3rem;
+  }
+}
+/* --- Hero Section Styles --- */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 70vh; /* Takes up 70% of the screen height */
+  min-height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax-like effect */
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.hero-content-box {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 50px;
+  border-radius: 20px;
+  max-width: 700px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-subtitle {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #58C896;
+  margin-bottom: 15px;
+}
+
+.hero-title {
+  font-family: 'Lora', serif !important;
+  font-size: 3rem !important;
+  line-height: 1.2;
+  color: #2c3e50 !important;
+  margin-bottom: 20px !important;
+}
+
+.hero-text {
+  font-size: 1.1rem;
+  color: #5a5a5a;
+  margin-bottom: 35px;
+}
+
+/* --- Buttons --- */
+.hero-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-actions-left {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.hero-btn.primary {
+  background: #2c3e50;
+  color: #fff !important;
+}
+
+.hero-btn.secondary {
+  background: transparent;
+  border: 2px solid #2c3e50;
+  color: #2c3e50 !important;
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  background: #58C896;
+  border-color: #58C896;
+  color: #fff !important;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .hero-section { 
+    /* Change fixed height to 'auto' so it grows with the text */
+    height: auto !important; 
+    min-height: 450px; 
+    padding: 60px 0; /* Adds breathing room at top and bottom */
+    border-radius: 0; 
+    margin-left: -5.5%; 
+    width: 111%; 
+    background-attachment: scroll; 
+  }
+
+  .hero-content-box { 
+    padding: 40px 20px; 
+    width: 85%; /* Keeps the card centered with a nice margin */
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95); /* Slightly more opaque for readability */
+  }
+
+  .hero-title { 
+    font-size: 1.8rem !important; 
+    margin-bottom: 15px !important;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+}
+/* Custom Footer Styling */
+.site-footer {
+  text-align: center;
+  padding: 40px 0;
+  margin-top: 60px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  align-items: center;
+}
+
+.footer-socials a {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none !important;
+}
+
+.footer-socials a:hover {
+  color: #58C896; /* Matches your brand green */
+  transform: translateY(-3px);
+}
+.weekly-snapshot {
+  margin-bottom: 60px;
+}
+
+.snapshot-header {
+  margin-bottom: 25px;
+}
+
+.snapshot-header h3 {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.snapshot-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.snapshot-card {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  padding: 15px 20px;
+  border-radius: 16px;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.snapshot-card:hover {
+  background: #ffffff;
+  border-color: #58C896;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.snapshot-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+  padding-right: 20px;
+  border-right: 2px solid #e2e8f0;
+  min-width: 45px;
+}
+
+.snapshot-date .day {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #58C896;
+}
+
+.snapshot-date .num {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #2c3e50;
+}
+
+.snapshot-info {
+  flex-grow: 1;
+}
+
+.snapshot-info h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #2c3e50;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.snapshot-info p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.snapshot-card i {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+ /* 1. Reset/Consistency for the Badge */
+  .date-badge {
+    min-width: 65px !important;
+    height: 65px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
+    background: #f0fdf4;
+    border-radius: 12px;
+    margin-right: 1.5rem;
+  }
+
+  /* 2. Title and Tag Layout */
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+
+  .title-row h4 {
+    margin: 0 !important;
+    font-size: 1.15rem;
+    color: #2c3e50;
+  }
+
+  /* 3. The Minimal Multi-Day Tag */
+  .multi-day-tag {
+    background: #e2e8f0; /* Soft grey instead of dark navy */
+    color: #475569;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    border: 1px solid #cbd5e1;
+  }
+
+  .location-time {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #7f8c8d;
+  }
+
+  @media (max-width: 600px) {
+    .title-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+  }
+
+  @media (max-width: 768px) {
+  .hero-section {
+    /* Reduce height to show content below 'the fold' */
+    height: 55vh; 
+    min-height: 400px;
+    border-radius: 0;
+    /* Bleed to edges if your wrapper has padding */
+    margin-left: -5.5%; 
+    width: 111%; 
+    /* Disable fixed background on mobile (helps performance/jitter) */
+    background-attachment: scroll; 
+  }
+
+  .hero-content-box {
+    padding: 30px 20px;
+    width: 90%; /* Leaves a small gap on the sides */
+    border-radius: 15px;
+  }
+
+  .hero-title {
+    font-size: 1.75rem !important; /* Scaled down for readability */
+    line-height: 1.1;
+  }
+
+  .hero-text {
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    line-height: 1.4;
+  }
+
+  /* Stack buttons for easier thumb-tapping */
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-actions-left {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-btn {
+    width: 100%; /* Full width buttons are better for UX */
+    padding: 14px 0;
+    text-align: center;
+  }
+}
+
+.status-link-card {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 12px 16px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  margin: 15px 0;
+}
+
+.status-icon-wrap {
+  background: #f0fdf4;
+  color: #58C896;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-right: 12px;
+}
+
+.status-label {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #2c3e50;
+  line-height: 1.2;
+}
+
+.status-subtext {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.arrow-icon {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  transition: transform 0.2s;
+  margin-left: 12px;
+}
+
+.status-link-card:hover {
+  border-color: #58C896;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transform: translateY(-2px);
+}
+
+.status-link-card:hover .arrow-icon {
+  transform: translateX(3px);
+  color: #58C896;
+}
+
+/* Stack text vertically */
+.btn-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* or center, depending on your button style */
+  line-height: 1.2;
+}
+
+/* Style the URL subtext */
+.btn-subtext {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  font-weight: normal;
+  margin-top: 2px;
+}
+
+/* Style the icon */
+.external-icon {
+  font-style: normal;
+  margin-left: 4px;
+  font-size: 0.9em;
+}
+
+
+    /* 8. HIDE THEME ARTIFACTS */
+    header p.view, header ul, .owner, hr { display: none !important; }
+
+    /* 9. RESPONSIVE FIXES */
+    @media (max-width: 768px) {
+      .post-container { flex-direction: column; }
+      .post-media, .post-content { width: 100%; }
+      header { padding: 30px 0 !important; }
+      header h1 { font-size: 2.2rem !important; }
+      header p { letter-spacing: 3px; font-size: 0.7rem !important; }
+      .site-logo { height: 45px; }
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
   
   </style>
 </head>
@@ -240,7 +1407,7 @@ header h1 {
     <img src="{{ '/assets/img/logo.png' | relative_url }}" alt="obxtodo logo" class="site-logo">
     <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
   </div>
-      <div class="menu-toggle" onclick="toggleMenu()">
+      <div class="menu-toggle">
       <div class="bar"></div>
       <div class="bar"></div>
       <div class="bar"></div>
@@ -252,10 +1419,24 @@ header h1 {
 
     {{ content }}
 
+
     <footer class="site-footer">
-      <p>&copy; {{ "now" | date: "%Y" }} OBX To Do</p>
-    </footer>
+  <div class="footer-socials">
+    <a href="https://instagram.com/obxtodo" target="_blank" aria-label="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+    
+    <a href="mailto:info@obxtodo.com" aria-label="Email">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
   </div>
+  <p style="font-size: 0.7rem; letter-spacing: 1px; margin-top: 15px; opacity: 0.5;">
+    &copy; {{ "now" | date: "%Y" }} OBX To Do
+  </p>
+</footer>
+  </div>
+
+  <div style="margin-bottom: 50px;"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 </body>
