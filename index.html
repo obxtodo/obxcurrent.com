@@ -7,7 +7,7 @@ title: OBX Current
 
 
  {% assign today_str = "now" | date: "%Y-%m-%d" %}
-{% assign sorted_events = site.data.events | sort: "date" %}
+{% assign sorted_events = site.data.events | sort: "sort_id" %}
 {% assign found_event = false %}
 
 <div class="" style="grid-column: 1 / -1; margin-bottom: 20px;">
@@ -19,7 +19,7 @@ title: OBX Current
     If your server is on UTC, you can use "now" | date: "%Y-%m-%d", "-4 hours" for Eastern Time.
   {% endcomment %}
   {% assign today_str = "now" | date: "%Y-%m-%d" %}
-  {% assign sorted_events = site.data.events | sort: "date" %}
+  {% assign sorted_events = site.data.events | sort: "sort_id" %}
   {% assign found_event = false %}
 
   <div class="event-list" style="margin-bottom: 15px;">
