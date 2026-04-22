@@ -8,12 +8,23 @@ title: OBX Current
    
   <h3>Happening Today</h3>
 
-  {% assign day_buffer = "now" | date: "%s" | minus: 43200 %}
-  {% assign today_str = day_buffer | date: "%Y-%m-%d" %}
+ {% assign today_str = "now" | date: "%Y-%m-%d" %}
+{% assign sorted_events = site.data.events | sort: "date" %}
+{% assign found_event = false %}
+
+<div class="" style="grid-column: 1 / -1; margin-bottom: 20px;">
+   
+  <h3>Happening Today</h3>
+
+  {% comment %} 
+    Removed the 43200 second (12hr) subtraction which was pushing the date back to April 21.
+    If your server is on UTC, you can use "now" | date: "%Y-%m-%d", "-4 hours" for Eastern Time.
+  {% endcomment %}
+  {% assign today_str = "now" | date: "%Y-%m-%d" %}
   {% assign sorted_events = site.data.events | sort: "date" %}
   {% assign found_event = false %}
 
-  <div class="event-list" style="margin-bottom: 15px;"> {% comment %} Reduced margin from 2rem {% endcomment %}
+  <div class="event-list" style="margin-bottom: 15px;">
     {% for event in sorted_events %}
       {% assign event_start = event.date | date: "%Y-%m-%d" %}
       
@@ -23,7 +34,10 @@ title: OBX Current
         {% assign event_expiry = event_start %}
       {% endif %}
 
-      {% if event_expiry == today_str %}
+      {% comment %} 
+        Logic Check: Show the event if Today is between the Start Date and the Expiry Date inclusive.
+      {% endcomment %}
+      {% if today_str >= event_start and today_str <= event_expiry %}
         {% assign found_event = true %}
         <div class="event-card">
           <div class="date-badge">
@@ -60,6 +74,7 @@ title: OBX Current
       </div>
     {% endif %}
   </div>
+
 
   {% comment %} Added margin-bottom here to create space before the weather/tide grid {% endcomment %}
   <div style="margin-bottom: 40px;">
