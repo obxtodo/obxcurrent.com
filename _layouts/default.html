@@ -1370,79 +1370,37 @@ header p {
   font-size: 0.9em;
 }
 
-/* LOCATION TOGGLE STYLES */
-.location-toggle-wrapper {
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 0 15px;
-}
-
-.location-toggle-wrapper .toggle-label {
-  display: block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #95a5a6;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 15px;
-}
-
-.location-toggle {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-.location-toggle li a {
-  background: #f8fafc;
-  color: #475569;
-  padding: 8px 20px;
-  border-radius: 99px; /* Pill shape to match your action buttons */
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  border: 1px solid #e2e8f0;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.location-toggle li a:hover,
-.location-toggle li a.active {
-  background: #58C896;
-  color: #ffffff !important;
-  border-color: #58C896;
-  box-shadow: 0 4px 12px rgba(88, 200, 150, 0.2);
-}
-/* REGION TOGGLE STYLES */
+/* REGION TOGGLE STYLES - MOBILE OPTIMIZED */
 .toggle-container {
-  display: inline-flex; 
-  flex-wrap: wrap; 
-  justify-content: center; 
-  gap: 8px; 
+  display: flex; 
+  flex-wrap: nowrap; /* Prevents the buttons from jumping to a new line */
+  justify-content: space-between; 
+  width: 100%; /* Allows it to fill mobile screens */
+  max-width: 500px; /* Keeps it from getting too stretched on desktop */
+  margin: 0 auto; /* Centers the container */
+  gap: 4px; /* Tighter gap to save space */
   background: #f8fafc; 
-  padding: 8px; 
-  border-radius: 24px; 
+  padding: 6px; 
+  border-radius: 20px; 
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.04); 
   border: 1px solid #e2e8f0;
+  box-sizing: border-box;
 }
 
 .loc-btn {
+  flex: 1; /* Forces all three buttons to be exactly the same width */
   background: transparent;
   color: #64748b;
   border: none;
-  padding: 10px 24px;
-  border-radius: 16px;
+  padding: 10px 4px; /* Reduced side padding so they fit nicely */
+  border-radius: 14px;
   font-family: 'Montserrat', sans-serif;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   line-height: 1.2;
 }
 
@@ -1455,6 +1413,7 @@ header p {
   font-weight: 700;
   font-size: 0.95rem;
   margin-bottom: 2px;
+  white-space: nowrap; /* Keeps the word "Central" on one line */
 }
 
 .loc-btn .sub-label {
@@ -1463,6 +1422,7 @@ header p {
   opacity: 0.8;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 /* Active State */
@@ -1476,6 +1436,17 @@ header p {
 .loc-btn.active:hover {
   background: #4ab384;
   color: white;
+}
+
+/* Specific Mobile Text Scaling */
+@media (max-width: 480px) {
+  .loc-btn .main-label {
+    font-size: 0.85rem; /* Shrinks the main text slightly for smaller iPhones */
+  }
+  .loc-btn .sub-label {
+    font-size: 0.55rem;
+    letter-spacing: 0; /* Removes letter spacing to save horizontal room */
+  }
 }
 
     /* 8. HIDE THEME ARTIFACTS */
