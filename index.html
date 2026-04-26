@@ -33,32 +33,43 @@ title: OBX Current
       {% endcomment %}
       {% if today_str >= event_start and today_str <= event_expiry %}
         {% assign found_event = true %}
-        <div class="event-card">
-          <div class="date-badge">
-            <span class="month">{{ event.date | date: "%b" }}</span>
-            <span class="day">{{ event.date | date: "%-d" }}</span>
-          </div>
-
-          <div class="event-info">
-            <div class="title-row">
-              <h4>{{ event.name }}</h4>
-              {% if event.end_date %}
-                <span class="multi-day-tag">Multi-Day Event</span>
+        <div class="event-card" style="display: flex; align-items: center; justify-content: space-between; gap: 15px;">
+              
+              {% if event.link %}
+                <a href="{{ event.link }}" class="btn-sm" target="_blank" style="flex-shrink: 0;">Details</a>
               {% endif %}
-            {% if event.other %}
-              <span class="multi-day-tag">{{ event.other }}</span>
-            {% endif %}
-            </div>
-            
-            <p class="location-time">
-              <i class="fa-solid fa-location-dot"></i> {{ event.location }} • {{ event.time }}
-            </p>
-          </div>
 
-          {% if event.link %}
-            <a href="{{ event.link }}" class="btn-sm" target="_blank">Details</a>
-          {% endif %}
-        </div>
+              <div class="event-info" style="flex-grow: 1; min-width: 0;">
+                <div class="title-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                  <h4 style="margin: 0;">{{ event.name }}</h4>
+                  {% if event.end_date %}
+                    <span class="multi-day-tag">Multi-Day</span>
+                  {% endif %}
+                </div>
+                
+                <p class="location-time" style="margin: 4px 0 0 0;">
+                  <i class="fa-solid fa-location-dot"></i> {{ event.location }} • {{ event.time }}
+                </p>
+              </div>
+
+              <div class="date-container" style="display: flex; align-items: center; justify-content: flex-end; flex-shrink: 0; min-width: 60px;">
+                <div class="date-badge" style="margin-right: 0 !important;">
+                  <span class="month">{{ event.date | date: "%b" }}</span>
+                  <span class="day">{{ event.date | date: "%-d" }}</span>
+                </div>
+
+                {% if event.end_date %}
+                  <span style="font-weight: 800; color: #58C896; margin: 0 6px;">-</span>
+                  <div class="date-badge" style="margin-right: 0 !important;">
+                    <span class="month">{{ event.end_date | date: "%b" }}</span>
+                    <span class="day">{{ event.end_date | date: "%-d" }}</span>
+                  </div>
+                {% endif %}
+              </div>
+
+
+      
+</div>
       {% endif %}
     {% endfor %}
 
