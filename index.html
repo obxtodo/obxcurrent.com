@@ -8,45 +8,10 @@ title: OBX Current
 {% assign found_event = false %}
 
 <div class="" style="grid-column: 1 / -1; margin-bottom: 20px;">
-   
   <h3>Happening Today</h3>
 
-  {% comment %} 
-    If your server is on UTC, you can use "now" | date: "%Y-%m-%d", "-4 hours" for Eastern Time.
-  {% endcomment %}
-  {% assign today_str = "now" | date: "%Y-%m-%d" %}
-  {% assign sorted_events = site.data.events | sort: "sort_id" %}
-  {% assign found_event = false %}
-
-  <div class="event-list" style="margin-bottom: 15px;">
-    {% for event in sorted_events %}
-      {% assign event_start = event.date | date: "%Y-%m-%d" %}
-      
-      {% if event.end_date %}
-        {% assign event_expiry = event.end_date | date: "%Y-%m-%d" %}
-      {% else %}
-        {% assign event_expiry = event_start %}
-      {% endif %}
-
-      {% comment %} 
-        Logic Check: Show the event if Today is between the Start Date and the Expiry Date inclusive.
-      {% endcomment %}
-      {% if today_str >= event_start and today_str <= event_expiry %}
-        {% assign found_event = true %}
-      
-      
-</div>
-      {% endif %}
-    {% endfor %}
-
-    {% if found_event == false %}
-      <div class="event-card" style="justify-content: center; padding: 25px; text-align: center; border: 1px dashed #cbd5e1; background: transparent;">
-        <div class="event-info">
-          <h4 style="color: #64748b !important; margin-bottom: 8px !important;">No events scheduled for today</h4>
-          <p class="location-time">Check back later for updates or view upcoming events on <a href="https://www.obxtodo.com/events" target="_blank" style="color: #58C896; text-decoration: none; font-weight: 600;">www.obxtodo.com/events</a></p>
-        </div>
-      </div>
-    {% endif %}
+  <div id="dynamic-event-list" class="event-list" style="margin-bottom: 15px; min-height: 50px;">
+    <p style="text-align: center; color: #64748b;">Loading local events...</p>
   </div>
 
   <div style="margin-bottom: 40px;">
@@ -56,27 +21,35 @@ title: OBX Current
   </div>
 </div>
 
-<div class="" style="grid-column: 1 / -1; margin-bottom: 20px;">
-  
+<script id="events-data" type="application/json">
+[
+  {% for event in site.data.events %}
+    {
+      "name": {{ event.name | jsonify }},
+      "start": "{{ event.date }}",
+      "end": "{{ event.end_date | default: event.date }}",
+      "time": {{ event.time | jsonify }},
+      "location": {{ event.location | jsonify }},
+      "link": {{ event.link | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+</script>
 
-  <div class="toggle-container">
-    <button class="loc-btn" data-loc="north">
-      <span class="main-label"> North</span>
-      <span class="sub-label">Corolla & Duck</span>
-    </button>
-    
-    <button class="loc-btn active" data-loc="central">
-      <span class="main-label"> Central</span>
-      <span class="sub-label">KDH to Nags Head</span>
-    </button>
-    
-    <button class="loc-btn" data-loc="south">
-      <span class="main-label"> South</span>
-      <span class="sub-label">Hatteras Island</span>
-    </button>
-  </div>
-
-</div>
+<script id="events-data" type="application/json">
+[
+  {% for event in site.data.events %}
+    {
+      "name": {{ event.name | jsonify }},
+      "start": "{{ event.date }}",
+      "end": "{{ event.end_date | default: event.date }}",
+      "time": {{ event.time | jsonify }},
+      "location": {{ event.location | jsonify }},
+      "link": {{ event.link | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+</script>
 
 <div class="dashboard-grid">
 
@@ -262,6 +235,79 @@ title: OBX Current
             updateDashboard(this.getAttribute('data-loc'));
         });
     });
+
+ function renderTodayEvents() {
+    const container = document.getElementById('dynamic-event-list');
+    const dataElement = document.getElementById('events-data');
+    if (!container || !dataElement) return;
+
+    const events = JSON.parse(dataElement.textContent);
+    
+    const now = new Date();
+    const offset = now.getTimezoneOffset() * 60000;
+    const todayStr = (new Date(now - offset)).toISOString().slice(0, 10);
+
+    const happeningToday = events.filter(e => todayStr >= e.start && todayStr <= e.end);
+
+    if (happeningToday.length > 0) {
+        container.innerHTML = ''; 
+        happeningToday.forEach(event => {
+            // Helper to format dates for the badges
+            const formatDate = (dateStr) => {
+                const dateObj = new Date(dateStr + 'T00:00:00'); // Prevent timezone shifting
+                return {
+                    month: dateObj.toLocaleString('default', { month: 'short' }),
+                    day: dateObj.getDate()
+                };
+            };
+
+            const startParts = formatDate(event.start);
+            const isMultiDay = event.start !== event.end;
+
+            container.innerHTML += `
+              <div class="event-card" style="display: flex; align-items: center; justify-content: space-between; gap: 15px;">
+        
+                <a href="${event.link}" class="btn-sm" target="_blank" style="flex-shrink: 0;">Details</a>
+
+                <div class="event-info" style="flex-grow: 1; min-width: 0;">
+                  <div class="title-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <h4 style="margin: 0;">${event.name}</h4>
+                    ${isMultiDay ? '<span class="multi-day-tag">Multi-Day</span>' : ''}
+                  </div>
+                  
+                  <p class="location-time" style="margin: 4px 0 0 0;">
+                    <i class="fa-solid fa-location-dot"></i> ${event.location} • ${event.time}
+                  </p>
+                </div>
+
+                <div class="date-container" style="display: flex; align-items: center; justify-content: flex-end; flex-shrink: 0; min-width: 60px;">
+                  <div class="date-badge" style="margin-right: 0 !important;">
+                    <span class="month">${startParts.month}</span>
+                    <span class="day">${startParts.day}</span>
+                  </div>
+
+                  ${isMultiDay ? `
+                    <span style="font-weight: 800; color: #58C896; margin: 0 6px;">-</span>
+                    <div class="date-badge" style="margin-right: 0 !important;">
+                      <span class="month">${formatDate(event.end).month}</span>
+                      <span class="day">${formatDate(event.end).day}</span>
+                    </div>
+                  ` : ''}
+                </div>
+              </div>`;
+        });
+    } else {
+        container.innerHTML = `
+            <div class="event-card" style="justify-content: center; padding: 25px; text-align: center; border: 1px dashed #cbd5e1; background: transparent;">
+                <div class="event-info">
+                    <h4 style="color: #64748b !important; margin-bottom: 8px !important;">No events scheduled for today</h4>
+                    <p class="location-time">Check back later for updates or view upcoming events on <a href="https://www.obxtodo.com/events" target="_blank" style="color: #58C896; text-decoration: none; font-weight: 600;">www.obxtodo.com/events</a></p>
+                </div>
+            </div>`;
+    }
+}
+
+renderTodayEvents();
 
     // 4. Load initial Central OBX data on page load
     updateDashboard('central');
