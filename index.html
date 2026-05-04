@@ -51,6 +51,27 @@ title: OBX Current
 ]
 </script>
 
+<div class="" style="grid-column: 1 / -1; margin-bottom: 20px;">
+  
+
+  <div class="toggle-container">
+    <button class="loc-btn" data-loc="north">
+      <span class="main-label"> North</span>
+      <span class="sub-label">Corolla & Duck</span>
+    </button>
+    
+    <button class="loc-btn active" data-loc="central">
+      <span class="main-label"> Central</span>
+      <span class="sub-label">KDH to Nags Head</span>
+    </button>
+    
+    <button class="loc-btn" data-loc="south">
+      <span class="main-label"> South</span>
+      <span class="sub-label">Hatteras Island</span>
+    </button>
+  </div>
+  </div>
+
 <div class="dashboard-grid">
 
 <div class="status-card" style="display: flex; flex-direction: column; min-height: 250px;">
@@ -263,7 +284,7 @@ function renderTodayEvents() {
             const endParts = formatDate(event.end);
             const isMultiDay = event.start !== event.end;
 
-           // Date Badges (Top on Mobile)
+         
 container.innerHTML += `
   <div class="event-card" style="display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 20px; padding: 15px;">
                      <a href="${event.link}" class="btn-sm" target="_blank" style="flex-shrink: 0;">Details</a>
